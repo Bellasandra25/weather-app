@@ -10,7 +10,7 @@ const App = () => {
    
     const fetchWeather = async () => {
       try {
-        const response = await axios.get(`https://api.weatherapi.com/v1/current.json?key=YOUR_API_KEY&q=${city}`);
+        const response = await axios.get(`https://api.weatherapi.com/v1/current.json?key=9898b53d1a9d47a5906112700250801&q=${city}`);
         setWeather(response.data);
       } catch (error) {
         console.error('Error fetching weather data:', error);
