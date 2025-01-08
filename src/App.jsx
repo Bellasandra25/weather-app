@@ -7,20 +7,20 @@ const App = () => {
 // const API_KEY ="8a75dafb04b24ef883d112152250701";
 
 
-   useEffect(()=>{
-    axios
-    .get(`https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${city}`)
-    .then((res)=>{
-      console.log(res.data)
-      setWeather(res.data)
-    })
-    .catch((err)=>{
-      console.log(err)
-      alert("There is an error")
-    },[]);
-   })
+   
+    const fetchWeather = async () => {
+      try {
+        const response = await axios.get(`https://api.weatherapi.com/v1/current.json?key=YOUR_API_KEY&q=${city}`);
+        setWeather(response.data);
+      } catch (error) {
+        console.error('Error fetching weather data:', error);
+      }
+    };
 
-
+    const handleSubmit = (e) => {
+    e.preventDefault();
+    fetchWeather();
+  };
       return (
     <div className='container flex flex-col justify-center items-center'>
       <h1>Weather App</h1>
@@ -31,7 +31,7 @@ const App = () => {
       type="text" name="city" 
       placeholder='Search Location'
        />
-      <button onClick={setWeather} type="search">Search</button>
+      <button onClick={handleSubmit(e)} type="search">Search</button>
       </div>
       {Weather? <div className='container-bottom '>
       <h2>City Name: {Weather.current.city}</h2>
